@@ -2,12 +2,13 @@ package scanfile
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 /* 单个文件扫描后返回对象 */
 type FileRes struct {
 	File      string
-	Strings   util.StringArray
+	Strings   StringArray
 	Num       int
 	EndTime   int64
 	StartTime int64
