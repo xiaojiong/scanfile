@@ -2,7 +2,6 @@ package scanfile
 
 import (
 	"encoding/json"
-	"util"
 )
 
 /* 单个文件扫描后返回对象 */
@@ -50,4 +49,14 @@ func (result *ScanResult) ToJson() string {
 		return "{}"
 	}
 	return string(r)
+}
+
+type StringArray []string
+
+func (a *StringArray) Set(s string) {
+	*a = append(*a, s)
+}
+
+func (a *StringArray) String() string {
+	return fmt.Sprint(*a)
 }
