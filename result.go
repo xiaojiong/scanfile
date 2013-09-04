@@ -18,7 +18,7 @@ type FileRes struct {
 
 func InitFileRes(file string) *FileRes {
 	p := new(FileRes)
-	fileInfo, _ := os.Stat(FileRes)
+	fileInfo, _ := os.Stat(file)
 	p.File = fileInfo.Name()
 	return p
 }
