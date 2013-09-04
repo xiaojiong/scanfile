@@ -3,6 +3,7 @@ package scanfile
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 )
 
 /* 单个文件扫描后返回对象 */
@@ -17,7 +18,8 @@ type FileRes struct {
 
 func InitFileRes(file string) *FileRes {
 	p := new(FileRes)
-	p.File = file
+	fileInfo, _ := os.Stat(FileRes)
+	p.File = fileInfo.Name()
 	return p
 }
 
