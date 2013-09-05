@@ -66,7 +66,6 @@ func ScanFile(fileName string, searchStr *string, counter *Counter, out chan *Fi
 			wg.Done()
 		}()
 	}
-	fileRes.End()
 	wg.Wait()
 	out <- fileRes
 }

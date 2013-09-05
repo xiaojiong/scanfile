@@ -9,12 +9,9 @@ import (
 
 /* 单个文件扫描后返回对象 */
 type FileRes struct {
-	File      string
-	Strings   StringArray
-	Num       int
-	EndTime   int64
-	StartTime int64
-	RunTime   int64
+	File    string
+	Strings StringArray
+	Num     int
 }
 
 func InitFileRes(file string) *FileRes {
@@ -27,10 +24,6 @@ func InitFileRes(file string) *FileRes {
 func (res *FileRes) Add(str string) {
 	res.Num++
 	res.Strings.Set(strings.TrimRight(str, "\r"))
-}
-
-func (res *FileRes) End() {
-	//res.runTime = res.endTime - res.startTime
 }
 
 /* ScanFile 扫描后返回对象 */
