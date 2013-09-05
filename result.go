@@ -44,12 +44,17 @@ func (result *ScanResult) AddCounter(counter *Counter) {
 }
 
 func (result *ScanResult) AddFileRes(res *FileRes) {
-	result.ResList = append(result.ResList, res)
+	if len(res.Strings) > 0 {
+		result.ResList = append(result.ResList, res)
+	}
 }
 
 func (result *ScanResult) ToJson() string {
+
 	r, err := json.Marshal(result)
+
 	if err != nil {
+		fmt.Println(err)
 		return "{}"
 	}
 	return string(r)
