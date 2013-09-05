@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
 )
 
 /* 单个文件扫描后返回对象 */
@@ -25,7 +26,7 @@ func InitFileRes(file string) *FileRes {
 
 func (res *FileRes) Add(str string) {
 	res.Num++
-	res.Strings.Set(str)
+	res.Strings.Set(strings.TrimRight(str, "\r"))
 }
 
 func (res *FileRes) End() {
