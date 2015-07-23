@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/Unknwon/goconfig"
 	"github.com/xiaojiong/memcachep"
+	"log"
+	"net"
 	"runtime"
 	"scanfile"
 )
