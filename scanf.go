@@ -48,6 +48,7 @@ func MemScanFile(fc *fileContent, searchStr *string, counter *Counter, out chan 
 			}
 			fileContentChan <- fc.getSegment(fsi).Content
 		}
+		close(fileContentChan)
 	}()
 
 	go func() {
