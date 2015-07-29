@@ -9,11 +9,12 @@ import (
 
 var LineFeed = byte('\n') //文本换行符标识
 var BufSize = 1024 * 1024 // buf大小
+var MaxResult = 10
 
 func MemScan(mf *MemFiles, searchStr *string) string {
 	var result ScanResult
 	//计数器
-	counter := InitCounter(10)
+	counter := InitCounter(MaxResult)
 
 	//扫描结果输出通道
 	out := make(chan *FileRes, 10)
@@ -47,7 +48,6 @@ func MemScanFile(fc *fileContent, searchStr *string, counter *Counter, out chan 
 			}
 			fileContentChan <- fc.getSegment(fsi).Content
 		}
-		close(fileContentChan)
 	}()
 
 	go func() {
@@ -93,7 +93,7 @@ func Scan(files []string, searchStr *string) string {
 
 	var result ScanResult
 	//计数器
-	counter := InitCounter(10)
+	counter := InitCounter(MaxResult)
 
 	//扫描结果输出通道
 	out := make(chan *FileRes, 10)

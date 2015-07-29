@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"github.com/Unknwon/goconfig"
 	"github.com/xiaojiong/memcachep"
+	"github.com/xiaojiong/scanfile"
 	"log"
 	"net"
 	"runtime"
-	"scanfile"
 )
 
 var ConfigServerPath string
@@ -35,11 +35,16 @@ func init() {
 	if err != nil {
 		panic("config not found server.port")
 	}
+
+	scanfile.MaxResult, err = ini.Int("server", "result_num")
+	if err != nil {
+		panic("config not found server.result_num")
+	}
 }
 
 func main() {
 	files := scanfile.PathFiles(ConfigServerPath)
-	mf := scanfile.InitMemFiles(files)
+	mf = scanfile.InitMemFiles(files)
 
 	ls, e := net.Listen("tcp", fmt.Sprintf(":%d", ConfigServerPort))
 	if e != nil {
