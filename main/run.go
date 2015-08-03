@@ -17,7 +17,7 @@ var mf *scanfile.MemFiles
 func init() {
 	fmt.Println("server Init.")
 
-	runtime.GOMAXPROCS(8)
+	runtime.GOMAXPROCS(runtime.NumCPU())
 	memcachep.BindAction(memcachep.GET, GetAction)
 
 	/* 获取配置文件信息 */

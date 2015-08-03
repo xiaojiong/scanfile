@@ -47,8 +47,11 @@ func MemScanFile(fc *fileContent, searchStr *string, counter *Counter, out chan 
 
 			}
 			fileContentChan <- fc.getSegment(fsi).Content
+			if fsi+1 == fc.Size {
+				close(fileContentChan)
+			}
 		}
-		close(fileContentChan)
+
 	}()
 
 	go func() {
@@ -56,7 +59,7 @@ func MemScanFile(fc *fileContent, searchStr *string, counter *Counter, out chan 
 
 		//使用多路复用 wg防止线程泄漏
 		wg := sync.WaitGroup{}
-		for i := 0; i < 3; i++ {
+		for i := 0; i < 10; i++ {
 			wg.Add(1)
 			go func() {
 				for {
